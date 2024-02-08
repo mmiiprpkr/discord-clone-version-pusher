@@ -80,7 +80,7 @@ export async function POST(
       }
     });
 
-    pusherServer.trigger(channelId,'chat:messages', message);
+    await pusherServer.trigger(channelId,'chat:messages', message);
 
     return NextResponse.json(message, { status: 200 });
   } catch (error) {
