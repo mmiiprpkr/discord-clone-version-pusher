@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 type ChatPusherProps = {
-  RoomKey: string;
+  chatId: string;
   addKey: string;
   updateKey: string;
   queryKey: string;
@@ -17,7 +17,7 @@ type MessageWithMemberWithProfile = Message & {
 }
 
 export const useChatPusher = ({
-  RoomKey,
+  chatId,
   addKey,
   updateKey,
   queryKey
@@ -25,7 +25,7 @@ export const useChatPusher = ({
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    pusherClient.subscribe(RoomKey)
+    pusherClient.subscribe(chatId)
 
     pusherClient.bind(updateKey, (message: MessageWithMemberWithProfile) => {
       queryClient.setQueryData([queryKey], (oldData: any) => {
@@ -80,9 +80,9 @@ export const useChatPusher = ({
     });
 
     return () => {
-      pusherClient.unsubscribe(RoomKey);
+      pusherClient.unsubscribe(chatId);
       pusherClient.unbind(updateKey);
       pusherClient.unbind(addKey);
     }
-  }, [RoomKey, addKey, queryKey, updateKey, queryClient]);
+  }, [chatId, addKey, queryKey, updateKey, queryClient]);
 }

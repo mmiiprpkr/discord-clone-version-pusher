@@ -44,7 +44,7 @@ export const ChatMessage = ({
   type
 }: ChateMessageProps) => {
   const queryKey = `chat:${chatId}`;
-  const RoomKey = chatId;
+  // const RoomKey = chatId;
   const addKey = "chat:messages";
   const updateKey = "chat:update";
 
@@ -64,14 +64,14 @@ export const ChatMessage = ({
     paramValue
   });
 
-  // useChatPusher({RoomKey, queryKey, addKey, updateKey})
-  // useChatScroll({
-  //   chatRef,
-  //   bottomRef,
-  //   loadMore: fetchNextPage,
-  //   shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
-  //   count: data?.pages?.[0]?.items?.length ?? 0,
-  // })
+  useChatPusher({ chatId, queryKey, addKey, updateKey})
+  useChatScroll({
+    chatRef,
+    bottomRef,
+    loadMore: fetchNextPage,
+    shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+    count: data?.pages?.[0]?.items?.length ?? 0,
+  })
 
   if (status === "pending") {
     return (
