@@ -48,7 +48,7 @@ const ChannelIdPage = async ({params}: ChannelIdPageProps) => {
         name={channel.name}
         chatId={channel.id}
         type="channel"
-        apiUrl="/api/messages"
+        apiUrl= {`/api/messages/${channel.serverId}/channels/${channel.id}`}
         pusherUrl="/api/pusher/message"
         pusherQuery={{
           channelId: channel.id,
