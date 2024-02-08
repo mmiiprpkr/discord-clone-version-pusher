@@ -64,7 +64,7 @@ export const ChatMessage = ({
     paramValue
   });
 
-  useChatPusher({RoomKey, queryKey, addKey, updateKey})
+  // useChatPusher({RoomKey, queryKey, addKey, updateKey})
   useChatScroll({
     chatRef,
     bottomRef,
