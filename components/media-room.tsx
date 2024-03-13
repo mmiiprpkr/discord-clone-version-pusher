@@ -21,10 +21,9 @@ export const MediaRoom = ({
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    if (!user?.firstName || !user?.lastName) return;
+    if (!user?.firstName) return;
 
-    const name = `${user.firstName} ${user.lastName}`;
-
+    const name = `${user.firstName}`;
     (async () => {
       try {
         const resp = await fetch(`/api/livekit?room=${chatId}&username=${name}`)
@@ -51,7 +50,7 @@ export const MediaRoom = ({
   return (
     <LiveKitRoom
       data-lk-theme="default"
-      serverUrl={process.env.NEXT_PUBLIC_LVIEKIT_URL}
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
       token={token}
       connect={true}
       video={video} 
